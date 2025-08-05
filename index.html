@@ -5,11 +5,15 @@
   <title>탱글이는 지금 뭐 하고 있을까?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    html, body {
+    html {
+      height: 100%;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+    }
+
+    body {
       height: 100%;
       margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      padding: 20px;
       font-family: 'Helvetica Neue', sans-serif;
       color: #333;
       display: flex;
@@ -17,7 +21,6 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 20px;
       transition: background 1s ease;
     }
 
@@ -73,7 +76,7 @@
 
     .time .clock {
       font-weight: 700;
-      font-size: 7vw; /* 시간 폰트 크기 살짝 더 키움 */
+      font-size: 7vw;
       margin-bottom: 0;
       color: #222;
     }
@@ -105,7 +108,7 @@
         margin-bottom: 1px;
       }
       .time .clock {
-        font-size: 2.7em; /* 데스크탑 시간 폰트 크기 살짝 더 키움 */
+        font-size: 2.7em;
         margin-bottom: 0;
       }
     }
@@ -118,7 +121,7 @@
   <div class="status" id="tangly-status">상태 확인 중...</div>
 
   <div class="time" id="vancouver-time">
-    <span class="label">현재 벤쿠버의 시간은</span>
+    <span class="label">현재 벤쿠버의 시간은?</span>
     <span class="date"></span>
     <span class="clock"></span>
   </div>
