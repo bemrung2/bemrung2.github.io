@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>탱글이는 현재 뭐하고 있을까?</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      text-align: center;
+      padding-top: 80px;
+      color: #333;
+      transition: background 1s ease;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #2b2b2b;
+    }
+
+    .time {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .status {
+      font-size: 2em;
+      font-weight: bold;
+      padding: 20px;
+      background: #ffffffcc;
+      display: inline-block;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>탱글이는 현재 뭐하고 있을까?</h1>
+  <div class="time" id="vancouver-time">밴쿠버 시간 불러오는 중...</div>
+  <div class="status" id="tangly-status">상태 확인 중...</div>
+
+  <script>
+    function updateTanglyStatus() {
+      const now = new Date();
+      const vancouverTime = new Intl.DateTimeFormat('ko-KR', {
+        timeZone: 'America/Vancouver',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      }).format(now);
+
+      document.getElementById('vancouver-time').textContent = `현재 밴쿠버 시간: ${vancouverTime}`;
+
+      const vancouverHour = new Intl.DateTimeFormat('en-US', {
+        hour: '2-digit',
+        hour12: false,
+        timeZone: 'America/Vancouver'
+      }).format(now);
+
+      const hour = parseInt(vancouverHour);
+
+      let status = "";
+
+      if (hour >= 23 || hour < 7) {
+        status = "자고 있어요 😴";
+      } else if (hour >= 7 && hour < 8) {
+        status = "아침 먹는 중이에요 🍞";
+      } else if (hour >= 8 && hour < 12) {
+        status = "공부 중이에요 📚";
+      } else if (hour >= 12 && hour < 13) {
+        status = "점심 먹는 중이에요 🍛";
+      } else if (hour >= 13 && hour < 18) {
+        status = "공부 중이에요 📚";
+      } else if (hour >= 18 && hour < 19) {
+        status = "저녁 먹는 중이에요 🍽️";
+      } else if (hour >= 19 && hour < 23) {
+        status = "운동 중이에요 💪";
+      } else {
+        status = "알 수 없는 상태 🤔";
+      }
+
+      document.getElementById("tangly-status").textContent = status;
+    }
+
+    updateTanglyStatus();
+    setInterval(updateTanglyStatus, 1000);
+  </script>
+
+</body>
+</html>
